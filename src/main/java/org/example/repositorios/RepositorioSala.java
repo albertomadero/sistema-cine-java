@@ -1,5 +1,6 @@
 package org.example.repositorios;
 
+import org.example.exceptions.AsientoYaExistenteException;
 import org.example.modelo.Asiento;
 import org.example.modelo.Sala;
 import org.example.exceptions.AsientoNoDisponibleException;
@@ -40,6 +41,8 @@ public class RepositorioSala {
                         try {
                             sala.agregarAsiento(asiento);
                         } catch (AsientoNoDisponibleException e) {
+                            System.out.println("Error: " + e.getMessage());
+                        } catch (AsientoYaExistenteException e) {
                             System.out.println("Error: " + e.getMessage());
                         }
                     }

@@ -1,6 +1,7 @@
 package org.example.modelo;
 
 import org.example.exceptions.AsientoNoDisponibleException;
+import org.example.exceptions.AsientoYaExistenteException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,16 @@ public class Sala implements Identificable{
         return asientos;
     }
 
-    public void agregarAsiento(Asiento asiento) throws AsientoNoDisponibleException {
+    public void agregarAsiento(Asiento asientoNuevo) throws AsientoNoDisponibleException,  AsientoYaExistenteException{
         if (asientos.size() >= cantidadAsientos) {
             throw new AsientoNoDisponibleException("Ya no hay espacios disponibles");
         }
-        asientos.add(asiento);
+        for (Asiento asiento : asientos) {
+            if (asiento.getIdAsiento() == asientoNuevo.getIdAsiento()) {
+                throw new AsientoYaExistenteException("El asiento ya se encuentra en la sala");
+            }
+        }
+        asientos.add(asientoNuevo);
     }
 
     public void mostrarAsientos() {
