@@ -1,7 +1,7 @@
 # Sistema Gestionador de Cinema
 
 ## Descripción
-Gestion el flujo completo de un cinema, el sistema puede gestionar:
+El sistema gestiona el flujo completo de un cinema, el sistema puede gestionar:
 - Peliculas
 - Funciones
 - Salas
