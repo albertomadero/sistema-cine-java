@@ -13,7 +13,7 @@ Gestion el flujo completo de un cinema, el sistema puede gestionar:
 - Gestor de dependencias: Maven
 
 ## Cómo ejecutar el proyecto
-1. Clona el repositorio: git clone [tu URL]
+1. Clona el repositorio: git clone https://github.com/albertomadero/sistema-cine-java
 2. Ábrelo en tu IDE y presiona el botón Run.
 3. El sistema se maneja mediante un menú por línea de comandos.
 
