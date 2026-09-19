@@ -98,4 +98,12 @@ public class AppConfig {
 
         return gestorReservas;
     }
+
+    @Bean
+    public RepositorioReservas repositorioReservas() {
+        // Crear repo
+        RepositorioReservas repositorioReservas = new RepositorioReservas();
+
+        return repositorioReservas;
+    }
 }
