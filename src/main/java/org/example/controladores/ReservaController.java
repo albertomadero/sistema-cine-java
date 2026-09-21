@@ -2,6 +2,7 @@ package org.example.controladores;
 
 import org.example.dto.ReservaRequest;
 import org.example.exceptions.AsientoYaReservadoException;
+import org.example.exceptions.ReservaNoEncontradaException;
 import org.example.gestores.GestorAsientos;
 import org.example.gestores.GestorFunciones;
 import org.example.gestores.GestorReservas;
@@ -13,9 +14,7 @@ import org.example.modelo.Usuario;
 import org.example.repositorios.RepositorioReservas;
 import org.example.utilidades.BuscadorUtil;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -56,6 +55,16 @@ public class ReservaController {
             return reservaNueva;
         } catch (AsientoYaReservadoException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/reservas/{id}")
+    public void eliminarReserva(@PathVariable int id) {
+        try {
+            gestorReservas.cancelarReserva(id);
+            repositorioReservas.guardarReserva(gestorReservas.getReservas());
+        } catch (ReservaNoEncontradaException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 }
