@@ -1,10 +1,13 @@
 package org.example.gestores;
 
+import org.example.controladores.ReservaController;
+import org.example.exceptions.ReservaNoEncontradaException;
 import org.example.modelo.Asiento;
 import org.example.modelo.Funcion;
 import org.example.modelo.Reserva;
 import org.example.modelo.Usuario;
 import org.example.exceptions.AsientoYaReservadoException;
+import org.example.utilidades.BuscadorUtil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -65,5 +68,15 @@ public class GestorReservas {
             }
         }
         return maximoEncontrado + 1;
+    }
+
+    public void cancelarReserva(int idReserva) throws ReservaNoEncontradaException {
+        Reserva reservaBuscada = BuscadorUtil.buscarPorId(idReserva, reservas);
+
+        if (reservaBuscada != null) {
+            reservas.remove(reservaBuscada);
+        } else {
+            throw new ReservaNoEncontradaException("No existe la reserva");
+        }
     }
 }
